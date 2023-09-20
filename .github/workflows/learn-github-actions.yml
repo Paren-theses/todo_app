@@ -1,0 +1,17 @@
+name: test-bash-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
+jobs:
+  test-bash-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "welcome to test bash"
+  run-jest-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+            node-version: "18"
+      - working-directory: src/webapp/api
+        run: npm install && npm run test
